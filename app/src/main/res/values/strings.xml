@@ -7,4 +7,9 @@
     <string name="title_groups">Groups</string>
     <string name="title_devices">Devices</string>
     <string name="title_schedule">Schedule</string>
+    <string name="title_profile">Profile</string>
+
+    <!-- Button Names (Probably delete later) -->
+    <string name="profile_btn">Navigate Profile</string>
+
 </resources>
