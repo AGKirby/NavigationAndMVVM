@@ -1,4 +1,4 @@
-package com.example.navigationandmvvm.ViewsAndViewModels.MatterDevicePage
+package com.example.navigationandmvvm.ViewsAndViewModels.devices
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,6 +13,8 @@ class MatterDeviceFragment : Fragment() {
 
     private var _binding: FragmentMatterDeviceBinding? = null
 
+    // This property is only valid between onCreateView and
+    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
