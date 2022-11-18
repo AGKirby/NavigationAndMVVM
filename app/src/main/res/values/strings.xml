@@ -11,6 +11,7 @@
 
     <!-- Button Names (Probably delete later) -->
     <string name="profile_btn">Navigate Profile</string>
+    <string name="mng_add_new_device_btn">Add Devices</string>
 
     <!-- Content Descriptions -->
     <string name="add_a_new_device">Add a new device</string>
