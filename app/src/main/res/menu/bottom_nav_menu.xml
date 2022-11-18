@@ -18,8 +18,5 @@
         android:id="@+id/navigation_schedule"
         android:icon="@drawable/ic_clock_icon"
         android:title="@string/title_schedule" />
-    <item
-        android:id="@+id/navigation_notifications"
-        android:title="@string/title_notifications" />
 
 </menu>

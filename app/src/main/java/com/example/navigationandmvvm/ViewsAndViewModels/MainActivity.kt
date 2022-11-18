@@ -27,9 +27,6 @@ class MainActivity : AppCompatActivity() {
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_home, R.id.navigation_groups, R.id.navigation_devices, R.id.navigation_schedule,
-
-                // TODO: Remove this navigation once all pages are finalized
-                R.id.navigation_notifications
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

@@ -36,14 +36,6 @@ class NotificationsFragment : Fragment() {
             textView.text = it
         }
 
-        // TODO: Delete afterwards
-        val navProfileBtn: Button = binding.navProfileBtn
-        navProfileBtn.setOnClickListener {
-            // Navigate to Profile Page
-            val intent = Intent(activity, ProfilesFragment::class.java)
-            startActivity(intent)
-        }
-
         return root
     }
 
