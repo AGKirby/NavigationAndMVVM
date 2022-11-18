@@ -12,7 +12,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.*
 
-private const val BASE_URL = "https://hu5nnerv6b.execute-api.us-west-2.amazonaws.com/Prod"
+private const val BASE_URL = "https://hu5nnerv6b.execute-api.us-west-2.amazonaws.com/Prod/"
 
 
 private val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
@@ -26,7 +26,7 @@ private val retrofit =
         .build()
 
 interface CatApiService {
-    @GET("/devices")
+    @GET("devices")
     fun getDevices(): Deferred<String>;
 
     @POST("/devices")
