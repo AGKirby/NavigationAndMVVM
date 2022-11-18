@@ -41,6 +41,12 @@
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
+            android:name=".ViewsAndViewModels.manageGroups.ManageGroupsFragment"
+            android:exported="false"
+            android:parentActivityName=".ViewsAndViewModels.manageGroups.ManageGroupsFragment"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
             android:name=".ViewsAndViewModels.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait"
