@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.navigationandmvvm.ViewsAndViewModels.manageDevices.ManageDevicesFragment
 import com.example.navigationandmvvm.databinding.FragmentMatterDeviceBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -27,16 +28,22 @@ class MatterDeviceFragment : Fragment() {
         val matterDeviceViewModel =
             ViewModelProvider(this).get(MatterDeviceViewModel::class.java)
 
+        lifecycle.addObserver(matterDeviceViewModel)
         _binding = FragmentMatterDeviceBinding.inflate(inflater, container, false)
-        val root: View = binding.root
 
-        val textView: TextView = binding.matterDevicesTextHeader
-        val addNewDeviceButton: FloatingActionButton = binding.addDevicesBtn
+        /** Devices List Recycle View **/
+        val devicesListRecyclerView = binding.devicesList
 
-        // Setup Dynamic Text Within Devices View
-        matterDeviceViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        // Setup recycler view for the devices list
+        devicesListRecyclerView.layoutManager = GridLayoutManager(context, 3)
+        devicesListRecyclerView.adapter = MatterDevicesAdapter(listOf())
+
+        matterDeviceViewModel.devices.observe(viewLifecycleOwner) { devices ->
+            devicesListRecyclerView.adapter = MatterDevicesAdapter(devices)
         }
+
+        /** Dynamic set UI elements **/
+        val addNewDeviceButton: FloatingActionButton = binding.addDevicesBtn
 
         // Setup Interactions Within Devices View
         addNewDeviceButton.setOnClickListener {
@@ -44,7 +51,7 @@ class MatterDeviceFragment : Fragment() {
             startActivity(intent)
         }
 
-        return root
+        return binding.root
     }
 
     override fun onDestroyView() {

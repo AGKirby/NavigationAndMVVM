@@ -11,16 +11,34 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/title_devices"
+        android:textAlignment="viewStart"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/title_devices" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/devices_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="#A1FFFFFF"
+        android:nestedScrollingEnabled="false"
+        app:layoutManager="GridLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/matter_devices_text_header"
+        app:spanCount="3"
+        tools:itemCount="3"
+        tools:listitem="@layout/devices_list_item" />
 
     <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -38,9 +56,10 @@
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="80dp"
             android:clickable="true"
+            android:contentDescription="@string/add_a_new_device"
             android:focusable="true"
             android:src="@android:drawable/ic_input_add"
-            android:contentDescription="@string/add_a_new_device" />
+            app:backgroundTint="#2196F3" />
 
     </RelativeLayout>
 
