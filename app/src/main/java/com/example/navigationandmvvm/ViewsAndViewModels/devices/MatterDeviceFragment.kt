@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.navigationandmvvm.ViewsAndViewModels.devicesEditor.DevicesEditorFragment
+import com.example.navigationandmvvm.ViewsAndViewModels.manageDevices.ManageDevicesFragment
 import com.example.navigationandmvvm.databinding.FragmentMatterDeviceBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -40,7 +40,7 @@ class MatterDeviceFragment : Fragment() {
 
         // Setup Interactions Within Devices View
         addNewDeviceButton.setOnClickListener {
-            val intent = Intent(activity, DevicesEditorFragment::class.java)
+            val intent = Intent(activity, ManageDevicesFragment::class.java)
             startActivity(intent)
         }
 
