@@ -15,7 +15,11 @@
         android:id="@+id/navigation_devices"
         android:name="com.example.navigationandmvvm.ViewsAndViewModels.devices.MatterDeviceFragment"
         android:label="@string/title_devices"
-        tools:layout="@layout/fragment_matter_device" />
+        tools:layout="@layout/fragment_matter_device" >
+        <action
+            android:id="@+id/action_navigation_devices_to_devicesEditorFragment"
+            app:destination="@id/devicesEditorFragment" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_groups"
         android:name="com.example.navigationandmvvm.ViewsAndViewModels.groups.GroupsFragment"
@@ -31,5 +35,10 @@
         android:name="com.example.navigationandmvvm.ViewsAndViewModels.notifications.NotificationsFragment"
         android:label="fragment_notifications"
         tools:layout="@layout/fragment_notifications" />
+    <activity
+        android:id="@+id/devicesEditorFragment"
+        android:name="com.example.navigationandmvvm.ViewsAndViewModels.devicesEditor.DevicesEditorFragment"
+        android:label="fragment_devices_editor"
+        tools:layout="@layout/fragment_devices_editor" />
 
 </navigation>

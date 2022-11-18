@@ -1,39 +1,15 @@
 package com.example.navigationandmvvm.ViewsAndViewModels.devices
 
 import Shared.Models.Device
-import android.media.Image
+import Shared.Utility.CatApi
 import android.util.Log
 import androidx.lifecycle.*
 import com.example.navigationandmvvm.R
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import org.json.JSONObject
-
-val MOCK_FAKE_DATA = """
-    {
-        "devices": [
-            {
-                "id": "a97a087b-9cdc-436f-ae17-bcdd20e916c2",
-                "name": "mydevicename",
-                "active": true,
-                "wifi": "mywifi",
-                "deviceType": "dimmer",
-                "groups": [
-                    "group1",
-                    "group2"
-                ]
-            },
-            {
-                "id": "mydeviceid",
-                "name": "mynewname",
-                "active": true,
-                "wifi": "mywifi",
-                "deviceType": "dimmer",
-                "groups": [
-                    "group1"
-                ]
-            }
-        ]
-    }
-""".trimIndent()
 
 
 class MatterDeviceViewModel : ViewModel(), DefaultLifecycleObserver {
@@ -43,6 +19,9 @@ class MatterDeviceViewModel : ViewModel(), DefaultLifecycleObserver {
     private val _devices = MutableLiveData<List<DevicesListItem>>().apply {
         value = listOf()
     }
+
+    private val matterDevicesViewModelJob = Job()
+    private var coroutineScope = CoroutineScope(matterDevicesViewModelJob + Dispatchers.Main)
 
     /** Public Accessors **/
     val devices : LiveData<List<DevicesListItem>> = _devices
@@ -68,26 +47,34 @@ class MatterDeviceViewModel : ViewModel(), DefaultLifecycleObserver {
     override fun onResume(owner: LifecycleOwner) {
         super.onResume(owner)
 
-        // TODO: Replace mock data with AWS-prod server data from HTTP GET
-        val devicesList = mutableListOf<Device>()
-
-        val data = JSONObject(MOCK_FAKE_DATA).getJSONArray("devices")
-        for ( i in 0 until data.length() ) {
+        coroutineScope.launch {
             try {
-                devicesList.add(Device(data.getJSONObject(i)))
+                val awsHttpResponse = CatApi.retrofitService.getDevices().await()
+                val devicesList = mutableListOf<Device>()
+
+                val data = JSONObject(awsHttpResponse).getJSONArray("devices")
+                for ( i in 0 until data.length() ) {
+                    try {
+                        devicesList.add(Device(data.getJSONObject(i)))
+                    } catch (e : Exception) {
+                        Log.e(_TAG, "Parsing devices list error: $e")
+                    }
+                }
+
+                // Generate mutable DevicesListItem
+                val mutableDevicesList = mutableListOf<DevicesListItem>()
+                devicesList.forEach {
+                    // TODO: The structure of DeviceListItem might be wrong?
+                    mutableDevicesList.add(DevicesListItem(it.getDeviceName(), R.drawable.ic_dashboard_black_24dp))
+                }
+
+                // Send event to update Devices View
+                _devices.postValue(mutableDevicesList)
             } catch (e : Exception) {
-                Log.e(_TAG, "Parsing devices list error: $e")
+                e.printStackTrace()
+                Log.e(_TAG, "Async getDevices failed: ${e.localizedMessage}")
             }
         }
-
-        // Generate mutable DevicesListItem
-        val mutableDevicesList = mutableListOf<DevicesListItem>()
-        devicesList.forEach {
-            // TODO: The structure of DeviceListItem might be wrong?
-            mutableDevicesList.add(DevicesListItem(it.getDeviceName(), R.drawable.ic_dashboard_black_24dp))
-        }
-
-        _devices.postValue(mutableDevicesList)
     }
 
     override fun onPause(owner: LifecycleOwner) {

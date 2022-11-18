@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.navigationandmvvm.R
 
@@ -37,5 +38,11 @@ class MatterDevicesAdapter(var devices : List<MatterDeviceViewModel.DevicesListI
 
         holder.label.text = device.label
         holder.image.setImageResource(R.drawable.ic_dashboard_black_24dp)
+
+        // Setup onClick interaction to Devices Editor page
+        holder.itemView.setOnClickListener {
+            // TODO: Setup specific devices editor page
+            holder.itemView.findNavController().navigate(R.id.action_navigation_devices_to_devicesEditorFragment)
+        }
     }
 }
