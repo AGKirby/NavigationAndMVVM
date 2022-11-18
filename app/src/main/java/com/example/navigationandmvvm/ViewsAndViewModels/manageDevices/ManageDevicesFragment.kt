@@ -2,6 +2,7 @@ package com.example.navigationandmvvm.ViewsAndViewModels.manageDevices
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.navigationandmvvm.databinding.FragmentManageDevicesBinding
@@ -20,9 +21,14 @@ class ManageDevicesFragment : AppCompatActivity() {
         lifecycle.addObserver(manageDevicesViewModel)
 
         val textView: TextView = _binding.manageDevicesTextHeader
+        val addNewDeviceBtn: Button = _binding.addNewDeviceBtn
 
         manageDevicesViewModel.text.observe(this) {
             textView.text = it
+        }
+
+        addNewDeviceBtn.setOnClickListener {
+            // TODO Alex will fill in logic
         }
     }
 
