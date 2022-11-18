@@ -1,14 +1,14 @@
-package com.example.navigationandmvvm.ViewsAndViewModels.home
+package com.example.navigationandmvvm.ViewsAndViewModels.schedule
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class HomeViewModel : ViewModel() {
+class ScheduleViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment (Favorites Page)"
+        value = "This is Schedule Fragment"
     }
-
     val text: LiveData<String> = _text
+
 }

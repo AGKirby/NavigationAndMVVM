@@ -12,20 +12,24 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.navigationandmvvm.ViewsAndViewModels.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
-
+        android:id="@+id/navigation_devices"
+        android:name="com.example.navigationandmvvm.ViewsAndViewModels.devices.MatterDeviceFragment"
+        android:label="@string/title_devices"
+        tools:layout="@layout/fragment_matter_device" />
+    <fragment
+        android:id="@+id/navigation_groups"
+        android:name="com.example.navigationandmvvm.ViewsAndViewModels.groups.GroupsFragment"
+        android:label="@string/title_groups"
+        tools:layout="@layout/fragment_groups" />
+    <fragment
+        android:id="@+id/navigation_schedule"
+        android:name="com.example.navigationandmvvm.ViewsAndViewModels.schedule.ScheduleFragment"
+        android:label="@string/title_schedule"
+        tools:layout="@layout/fragment_schedule" />
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.example.navigationandmvvm.ViewsAndViewModels.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
+        android:label="fragment_notifications"
         tools:layout="@layout/fragment_notifications" />
-    <fragment
-        android:id="@+id/navigation_devices"
-        android:name="com.example.navigationandmvvm.ViewsAndViewModels.MatterDevicePage.MatterDeviceFragment"
-        android:label="@string/title_devices"
-        tools:layout="@layout/fragment_matter_device" />
 
 </navigation>

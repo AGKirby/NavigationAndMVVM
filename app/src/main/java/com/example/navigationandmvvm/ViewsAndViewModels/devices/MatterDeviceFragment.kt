@@ -1,5 +1,6 @@
-package com.example.navigationandmvvm.ViewsAndViewModels.MatterDevicePage
+package com.example.navigationandmvvm.ViewsAndViewModels.devices
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,19 +8,22 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.navigationandmvvm.ViewsAndViewModels.devicesEditor.DevicesEditorFragment
 import com.example.navigationandmvvm.databinding.FragmentMatterDeviceBinding
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MatterDeviceFragment : Fragment() {
 
-    private var _binding: FragmentMatterDeviceBinding? = null
+    private lateinit var _binding: FragmentMatterDeviceBinding
 
-    private val binding get() = _binding!!
+    // This property is only valid between onCreateView and onDestroyView.
+    private val binding get() = _binding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val matterDeviceViewModel =
             ViewModelProvider(this).get(MatterDeviceViewModel::class.java)
 
@@ -27,8 +31,17 @@ class MatterDeviceFragment : Fragment() {
         val root: View = binding.root
 
         val textView: TextView = binding.matterDevicesTextHeader
+        val addNewDeviceButton: FloatingActionButton = binding.addDevicesBtn
+
+        // Setup Dynamic Text Within Devices View
         matterDeviceViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
+        }
+
+        // Setup Interactions Within Devices View
+        addNewDeviceButton.setOnClickListener {
+            val intent = Intent(activity, DevicesEditorFragment::class.java)
+            startActivity(intent)
         }
 
         return root
@@ -36,6 +49,5 @@ class MatterDeviceFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
     }
 }
