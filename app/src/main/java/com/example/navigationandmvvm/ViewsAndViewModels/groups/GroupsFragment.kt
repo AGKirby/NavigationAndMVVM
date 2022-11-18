@@ -1,5 +1,6 @@
 package com.example.navigationandmvvm.ViewsAndViewModels.groups
 
+import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,7 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.example.navigationandmvvm.ViewsAndViewModels.devicesEditor.DevicesEditorFragment
+import com.example.navigationandmvvm.ViewsAndViewModels.groupsEditor.GroupsEditorFragment
 import com.example.navigationandmvvm.databinding.FragmentGroupsBinding
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class GroupsFragment : Fragment() {
 
@@ -28,8 +32,17 @@ class GroupsFragment : Fragment() {
         val root: View = binding.root
 
         val textView: TextView = binding.matterDevicesTextHeader
+        val addNewDeviceButton: FloatingActionButton = binding.addGroupsBtn
+
+        // Setup Dynamic Text Within Devices View
         groupsViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
+        }
+
+        // Setup Interactions Within Devices View
+        addNewDeviceButton.setOnClickListener {
+            val intent = Intent(activity, GroupsEditorFragment::class.java)
+            startActivity(intent)
         }
 
         return root
