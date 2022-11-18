@@ -37,7 +37,7 @@ class MatterDevicesAdapter(var devices : List<MatterDeviceViewModel.DevicesListI
         val device = devices[position]
 
         holder.label.text = device.label
-        holder.image.setImageResource(R.drawable.ic_dashboard_black_24dp)
+        holder.image.setImageResource(R.drawable.ic_std_device)
 
         // Setup onClick interaction to Devices Editor page
         holder.itemView.setOnClickListener {

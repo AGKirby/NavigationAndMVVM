@@ -65,7 +65,7 @@ class MatterDeviceViewModel : ViewModel(), DefaultLifecycleObserver {
                 val mutableDevicesList = mutableListOf<DevicesListItem>()
                 devicesList.forEach {
                     // TODO: The structure of DeviceListItem might be wrong?
-                    mutableDevicesList.add(DevicesListItem(it.getDeviceName(), R.drawable.ic_dashboard_black_24dp))
+                    mutableDevicesList.add(DevicesListItem(it.getDeviceName(), R.drawable.ic_std_device))
                 }
 
                 // Send event to update Devices View
