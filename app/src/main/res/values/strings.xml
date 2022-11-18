@@ -12,4 +12,7 @@
     <!-- Button Names (Probably delete later) -->
     <string name="profile_btn">Navigate Profile</string>
 
+    <!-- Content Descriptions -->
+    <string name="add_a_new_device">Add a new device</string>
+
 </resources>
