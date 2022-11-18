@@ -10,6 +10,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.example.navigationandmvvm.ViewsAndViewModels.devicesEditor.DevicesEditorFragment
 import com.example.navigationandmvvm.ViewsAndViewModels.groupsEditor.GroupsEditorFragment
+import com.example.navigationandmvvm.ViewsAndViewModels.manageDevices.ManageDevicesFragment
+import com.example.navigationandmvvm.ViewsAndViewModels.manageGroups.ManageGroupsFragment
 import com.example.navigationandmvvm.databinding.FragmentGroupsBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -41,7 +43,7 @@ class GroupsFragment : Fragment() {
 
         // Setup Interactions Within Devices View
         addNewDeviceButton.setOnClickListener {
-            val intent = Intent(activity, GroupsEditorFragment::class.java)
+            val intent = Intent(activity, ManageGroupsFragment::class.java)
             startActivity(intent)
         }
 
